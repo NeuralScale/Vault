@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#6c63ff">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+  <title>Vault</title>
+</head>
+<body>
+
+<!-- Lock -->
+<div id="lock">
+  <h1>Vault</h1>
+  <input type="password" id="mpw" placeholder="Master password" autocomplete="current-password" aria-label="Master password">
+  <button class="btn btn-purple" id="lock-btn">Unlock</button>
+  <div class="err" id="lock-err"></div>
+  <div class="hint">First time? Just set any password.</div>
+  <div class="lock-info" id="lock-info"></div>
+  <button class="btn-link" onclick="resetVault()">Forgot password? Reset vault</button>
+</div>
+
+<!-- App -->
+<div id="app">
+  <div class="topbar">
+    <h1>Vault</h1>
+    <input type="search" id="search" placeholder="Search" aria-label="Search entries">
+    <button class="btn btn-purple" onclick="openAdd()">Add</button>
+    <button class="btn btn-gray btn-sm" onclick="lockApp()">Lock</button>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Username</th>
+        <th>Password</th>
+        <th>Notes</th>
+        <th aria-label="Actions"></th>
+      </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
+  <div id="empty">No entries yet. Tap Add.</div>
+</div>
+
+<!-- Add/Edit Modal -->
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <h2 id="modal-title">New Entry</h2>
+    <div><label for="f-name">Name</label><input id="f-name" placeholder="Gmail, Netflix"></div>
+    <div><label for="f-user">Username / Email</label><input id="f-user" placeholder="user@example.com"></div>
+    <div>
+      <label for="f-pw">Password</label>
+      <div class="pw-row">
+        <input id="f-pw" type="password" placeholder="password" autocomplete="new-password">
+        <button class="btn btn-gray btn-sm" onclick="fillGen()">Gen</button>
+      </div>
+    </div>
+    <div><label for="f-url">URL</label><input id="f-url" placeholder="https://"></div>
+    <div><label for="f-notes">Notes</label><textarea id="f-notes" placeholder="anything"></textarea></div>
+    <div class="modal-footer">
+      <button class="btn btn-red btn-sm" id="del-btn" onclick="doDelete()">Delete</button>
+      <button class="btn btn-gray" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-purple" onclick="doSave()">Save</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
